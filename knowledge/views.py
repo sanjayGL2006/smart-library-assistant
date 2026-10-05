@@ -2,12 +2,17 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.http import require_POST
 
 from .models import AIConversation, AIMessage
 from .services.rag import retrieve_context
 from .services.mode_parser import parse_mode
 from .services.modes import MODES_CONFIG
+
+@login_required
+def ai_chat_page(request):
+    return render(request, "knowledge/ai_chat.html")
 
 @login_required
 @require_POST
@@ -33,6 +38,14 @@ def ask_ai(request):
         return JsonResponse(
             {
                 "error": "Question is required."
+            },
+            status=400
+        )
+        
+    if len(question) > 1000:
+        return JsonResponse(
+            {
+                "error": "Question is too long. Maximum length is 1000 characters."
             },
             status=400
         )
