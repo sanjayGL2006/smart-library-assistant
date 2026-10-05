@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Library Books</h2><table>
+<tr><th>Book</th><th>Author</th><th>Category</th><th>ISBN</th><th>Notes</th><th>Status</th></tr>
+{% for b in books %}<tr><td>{{ b.name }}</td><td>{{ b.author }}</td><td>{{ b.category }}</td><td>{{ b.isbn }}</td>
+<td>{% if b.note %}<a href="{{ b.note.url }}" target="_blank">View</a>{% else %}-{% endif %}</td>
+<td>{% if b.available %}Available{% else %}Issued{% endif %}</td></tr>{% endfor %}</table></div>{% endblock %}

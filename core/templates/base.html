@@ -1,0 +1,37 @@
+{% load static %}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OLMS - Online Library Management System</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#f4f6f8;color:#222}
+nav{background:#1f3a5f;padding:10px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+nav a,nav button{color:#fff;text-decoration:none;background:none;border:0;font:inherit;cursor:pointer}
+nav .brand{font-weight:700;margin-right:auto}
+main{max-width:900px;margin:24px auto;padding:0 16px}
+.card{background:#fff;padding:20px;border-radius:8px;box-shadow:0 1px 3px #0002;margin-bottom:16px}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px;border-bottom:1px solid #ddd}
+input,select{padding:7px;margin:4px 0;width:100%;max-width:340px;box-sizing:border-box}
+.btn{background:#1f3a5f;color:#fff;padding:8px 14px;border:0;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.red{background:#b3261e}.msg{background:#e3f4e1;padding:10px;border-radius:4px;margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.stats div{background:#1f3a5f;color:#fff;padding:16px;border-radius:8px;text-align:center}.stats b{font-size:28px;display:block}
+.errorlist{color:#b3261e;padding-left:16px}
+</style></head><body>
+<nav><a class="brand" href="{% url 'home' %}">OLMS</a>
+{% if user.is_authenticated %}
+  <a href="{% url 'dashboard' %}">Dashboard</a>
+  {% if user.is_staff %}
+    <a href="{% url 'category_list' %}">Categories</a><a href="{% url 'author_list' %}">Authors</a>
+    <a href="{% url 'book_list' %}">Manage Books</a><a href="{% url 'issue_book' %}">Issue Book</a>
+    <a href="{% url 'issued_list' %}">Issued</a><a href="{% url 'students' %}">Students</a>
+    <a href="{% url 'notes_list' %}">All Notes</a>
+  {% else %}
+    <a href="{% url 'books' %}">Books</a><a href="{% url 'my_books' %}">My Books</a>
+    <a href="{% url 'notes_list' %}">All Notes</a><a href="{% url 'profile' %}">Profile</a>
+  {% endif %}
+  <a href="{% url 'password_change' %}">Password</a>
+  <form method="post" action="{% url 'logout' %}" style="margin:0">{% csrf_token %}<button>Logout ({{ user.username }})</button></form>
+{% else %}<a href="{% url 'login' %}">Login</a><a href="{% url 'register' %}">Student Signup</a>{% endif %}
+</nav>
+<main>{% for m in messages %}<div class="msg">{{ m }}</div>{% endfor %}{% block content %}{% endblock %}</main>
+{% block scripts %}{% endblock %}
+</body></html>

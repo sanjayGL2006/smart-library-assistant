@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block content %}
+<div class="card">
+  <h2>All Notes Library</h2>
+  <p style="margin-bottom: 16px; font-weight: bold; color: #1f3a5f;">Total Notes Available: {{ total_notes }}</p>
+  <table>
+    <tr>
+      <th>File Name</th>
+      <th>Action</th>
+    </tr>
+    {% for f in files %}
+    <tr>
+      <td>{{ f }}</td>
+      <td>
+        <a class="btn" href="{% url 'download_note' f %}" target="_blank">Download / Open</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">No notes found in the directory.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

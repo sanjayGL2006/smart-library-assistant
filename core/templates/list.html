@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>{{ title }}</h2><a class="btn" href="{% url slug|add:'_add' %}">+ Add</a>
+<table>{% for o in object_list %}<tr><td>{{ o }}</td><td style="text-align:right">
+<a class="btn" href="{% url slug|add:'_edit' o.pk %}">Edit</a> <a class="btn red" href="{% url slug|add:'_delete' o.pk %}">Delete</a></td></tr>
+{% empty %}<tr><td>Nothing here yet.</td></tr>{% endfor %}</table></div>{% endblock %}

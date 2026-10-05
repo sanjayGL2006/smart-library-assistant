@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% load static %}{% block content %}
+<div class="card"><h2>Search Students</h2>
+<input id="q" placeholder="Student ID or name (e.g. SID1001)" autofocus>
+<table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th></tr></thead><tbody id="results"></tbody></table></div>{% endblock %}
+{% block scripts %}<script src="{% static 'js/app.js' %}"></script>{% endblock %}

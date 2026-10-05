@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>{{ title }}</h2>
+<form method="post" {% if 'book' in request.path %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}{{ form.as_p }}<button class="btn">Submit</button></form>
+{% if login %}<p><a href="{% url 'password_reset' %}">Forgot password?</a></p>{% endif %}</div>
+{% endblock %}

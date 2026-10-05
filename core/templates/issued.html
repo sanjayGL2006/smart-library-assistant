@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>{{ title }}</h2><table>
+<tr>{% if show_student %}<th>Student</th>{% endif %}<th>Book</th><th>Issued</th><th>Due</th><th>Returned</th>{% if show_student %}<th></th>{% endif %}</tr>
+{% for r in rows %}<tr>{% if show_student %}<td>{{ r.student }}</td>{% endif %}<td>{{ r.book.name }}</td>
+<td>{{ r.issued_at|date:"d M Y H:i" }}</td><td>{{ r.due_date }}</td>
+<td>{% if r.returned_at %}{{ r.returned_at|date:"d M Y H:i" }}{% else %}Not returned{% endif %}</td>
+{% if show_student %}<td>{% if not r.returned_at %}<form method="post" action="{% url 'return_book' r.pk %}">{% csrf_token %}<button class="btn">Return</button></form>{% endif %}</td>{% endif %}
+</tr>{% empty %}<tr><td>No records.</td></tr>{% endfor %}</table></div>{% endblock %}

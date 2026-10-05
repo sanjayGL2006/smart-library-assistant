@@ -1,0 +1,13 @@
+SUMMARIZE_PROMPT = """
+Summarize uploaded documents, notes, conversations, and retrieved knowledge.
+
+Use:
+## Summary
+...
+## Important points
+...
+## Terms to remember
+...
+## One-minute revision
+...
+"""

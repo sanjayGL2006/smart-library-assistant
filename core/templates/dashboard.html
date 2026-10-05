@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>{% if user.is_staff %}Admin Dashboard{% else %}Welcome, {{ user.first_name|default:user.username }}{% endif %}</h2>
+{% if user.is_staff %}
+<div class="stats"><div><b>{{ books }}</b>Books</div><div><b>{{ authors }}</b>Authors</div><div><b>{{ categories }}</b>Categories</div>
+<div><b>{{ students }}</b>Students</div><div><b>{{ issued }}</b>Currently issued</div><div><b>{{ returned }}</b>Returned</div></div>
+{% else %}
+<p>Your student ID: <b>{{ student.student_id }}</b></p>
+<div class="stats"><div><b>{{ issued }}</b>Books not yet returned</div><div><b>{{ total }}</b>Total books issued</div></div>
+{% endif %}</div>{% endblock %}

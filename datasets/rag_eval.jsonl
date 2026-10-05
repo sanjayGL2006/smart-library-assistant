@@ -1,0 +1,3 @@
+{"question":"What is Python inheritance?","expected_topics":["inheritance","class","parent class","child class"],"difficulty":"beginner","mode":"teacher","expected_answer":"Inheritance allows a class to reuse attributes and methods from another class."}
+{"question":"What is RAG?","expected_topics":["retrieval","knowledge","LLM","context"],"difficulty":"beginner","mode":"human","expected_answer":"RAG lets an AI retrieve useful information from stored documents before answering."}
+{"question":"What is CSRF?","expected_topics":["cross-site request forgery","authenticated browser","state-changing request","CSRF token"],"difficulty":"intermediate","mode":"ai","expected_answer":"CSRF tricks an authenticated browser into making an unintended state-changing request."}
